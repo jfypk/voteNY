@@ -9,7 +9,7 @@ export default class Party extends Component {
 
     _onPressContinueButton = () => {
         console.log("Party Continue");
-        console.log(this.state.address1 + ' ' + this.state.address2 + ' ' + this.state.city + ' ' + this.state.county + ' ' + this.state.zipCode);
+        console.log(this.state.party);
         this.props.navigation.navigate('Absentee');
     }
     

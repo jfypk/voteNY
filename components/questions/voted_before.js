@@ -4,7 +4,7 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 export default class VotedBefore extends Component {
     _onPressYesButton = () => {
         console.log("VotedBefore YES");
-        this.props.navigation.navigate('LastVote');
+        this.props.navigation.navigate('LastVoteYear');
     }
 
     _onPressNoButton = () => {

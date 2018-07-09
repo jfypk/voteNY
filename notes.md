@@ -5,4 +5,11 @@
 [] style each page
 [] add error messages to console log for reason of unable to register
 [X] add "Is the address where you receive mail different than the address of where you live?" 
+[] prevent people from entering letters in phone numbers (https://stackoverflow.com/questions/32946793/react-native-textinput-that-only-accepts-numeric-characters)
 [] confirm navigation flow
+[] change textinputs to have placeholder text
+[] fix res address page look.
+[] add required info logic to required info
+[] fix conditional in line 16 in birthday.js to be 18 years from election day of that year
+[] in email, do the check on lowercase
+[] make sure DMV number is 9 characters long

@@ -21,7 +21,7 @@ export default class MailAddress extends Component {
         return(
             <View style={styles.container}>
                 <Text>
-                    What is the address of where you live?
+                    What is your mailing address?
                 </Text>
                 <TextInput
                     onChangeText={(address1) => this.setState({address1})}

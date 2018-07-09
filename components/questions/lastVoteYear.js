@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Textfield, Button, StyleSheet, Text, View } from 'react-native';
-
+import { TextInput, Button, StyleSheet, Text, View } from 'react-native';
+    
 export default class LastVoteYear extends Component {
     constructor(props) {
         super(props);
@@ -16,7 +16,7 @@ export default class LastVoteYear extends Component {
         return(
             <View style={styles.container}>
                 <Text>
-                    What year?
+                    In what year did you last vote?
                 </Text>
                 <TextInput
                     onChangeText={(voteYear) => this.setState({voteYear})}

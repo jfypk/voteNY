@@ -21,11 +21,11 @@ export default class DifferentMail extends Component {
                 </Text>
                 <Button
                     onPress={this._onPressYesButton}
-                    title="Yes"
+                    title="I have a different mailing address"
                 />
                 <Button
                     onPress={this._onPressNoButton}
-                    title="No"
+                    title="My mailing address is the same"
                 />
             </View>
         )

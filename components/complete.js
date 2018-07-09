@@ -3,7 +3,7 @@ import { Button, TextInput, StyleSheet, Text, View } from 'react-native';
 
 export default class Complete extends Component {
 
-    _onPressContinueButton = () => {
+    _onPressEmailButton = () => {
         console.log("Complete Email");
         this.props.navigation.navigate('Home');
     }

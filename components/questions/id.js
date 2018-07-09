@@ -4,17 +4,17 @@ import { Picker, Button, StyleSheet, Text, View } from 'react-native';
 export default class Id_Type extends Component {
     constructor(props) {
         super(props);
-        this.state = { id_type: 'none selected' };
+        this.state = { id_type: 'dmv' };
     }
 
     _onPressContinueButton = () => {
         console.log("Id_Type Continue");
         console.log(this.state.id_type);
-        if (id_type === "dmv") {
+        if (this.state.id_type === "dmv") {
             this.props.navigation.navigate('DMV_Number');
-        } else if (id_type === "ssn") {
+        } else if (this.state.id_type === "ssn") {
             this.props.navigation.navigate('SSN_Number');
-        } else if (id_type === "no_id") {
+        } else if (this.state.id_type === "no_id") {
             this.props.navigation.navigate('Party');
         } else {
             console.log("ERROR");

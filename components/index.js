@@ -17,7 +17,7 @@ import VotedBefore from './questions/voted_before';
 import LastVoteYear from './questions/lastVoteYear';
 import VCName from './questions/vc_name';
 import VCAddress from './questions/vc_address';
-import VCCounty from './questions/vc_address';
+import VCCounty from './questions/vc_county';
 import Id_Type from './questions/id';
 import DMV_Number from './questions/dmv_number';
 import SSN_Number from './questions/ssn';

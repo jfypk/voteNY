@@ -15,7 +15,6 @@ export default class VCCounty extends Component {
 
     _onPressNoChangeButton = () => {
         console.log("VCCounty Continue");
-        console.log(this.state.firstName + ' ' + this.state.middleInitial + ' ' + this.state.lastName + ' ' + this.state.suffix);
         this.props.navigation.navigate('Id_Type');
     }
     

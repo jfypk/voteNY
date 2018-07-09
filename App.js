@@ -28,7 +28,8 @@ import {
   Party,
   Absentee,
   ElectionWorker,
-  Birthday
+  Birthday,
+  Complete
   } from './components/index';
 
 const RootStack = createStackNavigator(
@@ -60,7 +61,8 @@ const RootStack = createStackNavigator(
     Party: Party,
     Absentee: Absentee,
     ElectionWorker: ElectionWorker,
-    Birthday: Birthday
+    Birthday: Birthday,
+    Complete: Complete
   },
   {
     initialRouteName: 'Home',

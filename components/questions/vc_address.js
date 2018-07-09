@@ -45,13 +45,6 @@ export default class VCAddress extends Component {
                     onChangeText={(zipCode) => this.setState({zipCode})}
                     value={this.state.zipCode} clearTextOnFocus={true}
                 />
-                <Picker
-                    selectedValue={this.state.county}
-                    style={{ height: 50, width: 100 }}
-                    onValueChange={(itemValue, itemIndex) => this.setState({county: itemValue})}>
-                    <Picker.Item label="Java" value="java" />
-                    <Picker.Item label="JavaScript" value="js" />
-                </Picker>
                 <Button
                     onPress={this._onPressContinueButton}
                     title="Continue"
