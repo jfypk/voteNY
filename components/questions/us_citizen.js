@@ -5,6 +5,7 @@ export default class USCitizen extends Component {
     _onPressYesButton = () => {
         console.log("USCitizen YES");
         this.props.navigation.navigate('Birthday');
+        //add us citizen to user-data.json
     }
 
     _onPressNoButton = () => {
@@ -13,6 +14,9 @@ export default class USCitizen extends Component {
         
         
     }
+
+    
+
     render() {
         return(
             <View style={styles.container}>
