@@ -11,16 +11,47 @@ export default class Birthday extends Component {
         this.setState({birthday: newDate});
     }
 
-    _onPressContinueButton = () => {
+    makeSingleNumberDouble = num => {
+        if(num < 10) {
+            return "0" + num.toString()
+        } else {
+            return num.toString()
+        }
+    }
+
+    _onPressContinueButton = async () => {
         console.log("Birthday Continue");
         if((new Date() - this.state.birthday) > 568025136000) { //18 years
-            this.props.navigation.navigate('Name');
+            let bday = this.state.birthday
+            let monthString = this.makeSingleNumberDouble(bday.getMonth());
+            let dateString = this.makeSingleNumberDouble(bday.getDate());
+            let yearString = bday.getFullYear().toString();
+            let data = {
+                "older_than_18_yes": "X",
+                "older_than_18_no" : "",
+                "birth_month" : monthString,
+                "birth_day" : dateString,
+                "birth_year" : yearString
+            }
+            fetch('http://localhost:5000/data', { //change URL
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(() => {
+                this.props.navigation.navigate('Name');
+            })
+            .catch((error) => {
+                console.error(error);
+            });
         } else {
             console.log("Error: Registrant is too young to vote.");
             this.props.navigation.navigate('Unable');
         }
-        
     }
+
     
     render() {
         return(

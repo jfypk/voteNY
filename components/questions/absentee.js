@@ -2,9 +2,23 @@ import React, { Component } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default class Absentee extends Component {
-    _onPressYesButton = () => {
-        console.log("Absentee YES");
+    _onPressYesButton = async () => {
+        fetch('http://localhost:5000/data', { //change URL
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                "absentee_check": "X"
+            })
+        })
+        .then(() => {
+            console.log("Absentee YES");
         this.props.navigation.navigate('ElectionWorker');
+        })
+        .catch((error) => {
+            console.error(error);
+        })
     }
 
     _onPressNoButton = () => {

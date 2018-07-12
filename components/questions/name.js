@@ -4,16 +4,33 @@ import { Button, TextInput, StyleSheet, Text, View } from 'react-native';
 export default class Name extends Component {
     constructor(props) {
         super(props);
-        this.state = { firstName: 'First Name',
-                       middleInitial: 'Middle Initial',
-                       lastName: 'Last Name',
-                       suffix: 'Suffix' };
+        this.state = { firstName: '',
+                       middleInitial: '',
+                       lastName: '',
+                       suffix: '' };
     }
 
     _onPressContinueButton = () => {
-        console.log("Name Continue");
-        console.log(this.state.firstName + ' ' + this.state.middleInitial + ' ' + this.state.lastName + ' ' + this.state.suffix);
-        this.props.navigation.navigate('Phone');
+        let data = {
+            "last_name" : this.state.lastName,
+            "suffix" : this.state.suffix,
+            "first_name": this.state.firstName,
+            "middle_initial": this.state.middleInitial
+        }
+        fetch('http://localhost:5000/data', { //change URL
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(() => {
+            console.log("Name Continue");
+            this.props.navigation.navigate('Phone');
+        })
+        .catch((error) => {
+            console.error(error);
+        });
     }
     
     render() {
@@ -24,19 +41,19 @@ export default class Name extends Component {
                 </Text>
                 <TextInput
                     onChangeText={(firstName) => this.setState({firstName})}
-                    value={this.state.firstName} clearTextOnFocus={true}
+                    value={this.state.firstName} placeholder={"First Name"}
                 />
                 <TextInput
                     onChangeText={(middleInitial) => this.setState({middleInitial})}
-                    value={this.state.middleInitial} maxLength={1} clearTextOnFocus={true}
+                    value={this.state.middleInitial} maxLength={1}  placeholder={"Middle Initial"}
                 />
                 <TextInput
                     onChangeText={(lastName) => this.setState({lastName})}
-                    value={this.state.lastName} clearTextOnFocus={true}
+                    value={this.state.lastName} placeholder={"Last Name"}
                 />
                 <TextInput
                     onChangeText={(suffix) => this.setState({suffix})}
-                    value={this.state.suffix} clearTextOnFocus={true}
+                    value={this.state.suffix} placeholder={"Suffix (e.g. Jr., III, etc.)"}
                 />
                 <Button
                     onPress={this._onPressContinueButton}

@@ -8,9 +8,23 @@ export default class DMV_Number extends Component {
     }
 
     _onPressContinueButton = () => {
-        console.log("DMV_Number Continue");
-        console.log(this.state.dmvNumber);
-        this.props.navigation.navigate('Party');
+        let data = {
+            "dmv" : this.state.dmvNumber
+        }
+        fetch('http://localhost:5000/data', { //change URL
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(() => {
+                console.log("DMV_Number Continue");
+                this.props.navigation.navigate('Party');
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
     
     render() {
