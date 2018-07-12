@@ -16,3 +16,4 @@
 [X] make sure DMV number is 9 characters long
 [] add email capability https://github.com/chirag04/react-native-mail
 [X] when going back to edit a textfield, it doesnt' really clear on focus.
+[] should the fetch be done in its own component that i call again and again? 

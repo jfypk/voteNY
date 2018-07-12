@@ -1,24 +1,16 @@
 import React, { Component } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
+import { postData } from '../postData';
 
 export default class USCitizen extends Component {
     _onPressYesButton = async () => {
-        fetch('http://localhost:5000/data', { //change URL
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                "us_citizen_yes": "X",
-                "us_citizen_no" : ""
-            })
-        })
-        .then(() => {
+        data = {
+                    "us_citizen_yes": "",
+                    "us_citizen_no" : "X"
+                }
+        postData(data, () => {
             console.log("USCitizen YES");
             this.props.navigation.navigate('Birthday');
-        })
-        .catch((error) => {
-            console.error(error);
         });
     }
 
