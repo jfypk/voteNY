@@ -1,24 +1,34 @@
 import os
-from flask import Flask, render_template, url_for, json
+from flask import Flask, render_template, url_for, json, request
 
 app = Flask(__name__)
 
-@app.route("/showdata/<param>", methods=["GET"])
-def showdata(param):
-    # if request.method == "GET":
+@app.route("/data", methods=["GET", "POST"])
+def postdata():
+    if request.method == "POST":
+        content = request.get_json()
+        SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+        file = os.path.join(SITE_ROOT, "user-data.json")
+        updateJSONFile(content, file)
+        return json.dumps(content)
+    if request.method == "GET":
         SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
         json_url = os.path.join(SITE_ROOT, "user-data.json")
         data = json.load(open(json_url))
-        data = data[param]
-        data = json.dumps(data)
-        return data
+        return json.dumps(data)
 
-@app.route("/postdata", methods=["POST"])
-def postdata():
-    print(request.is_json)
-    content = request.get_json()
-    print(content)
-    return 'JSON POSTED'
+def updateJSONFile(newData, file):
+    jsonFile = open(file, "r")
+    data = json.load(jsonFile)
+    jsonFile.close()
+
+    for key, value in newData.items():
+        data[key] = value
+
+    jsonFile = open(file, "w+")
+    jsonFile.write(json.dumps(data))
+    jsonFile.close()
+
 
 
 if __name__ == "__main__":

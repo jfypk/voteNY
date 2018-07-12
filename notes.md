@@ -1,5 +1,6 @@
-[] add logic to change the data in the python file
-[] connect front-end to python backend [https://codeburst.io/integrating-react-native-apps-with-back-end-code-using-fetch-api-8aeb83dfb428]
+[X] add logic to change the data in the python file
+[X] connect front-end to python backend [https://codeburst.io/integrating-react-native-apps-with-back-end-code-using-fetch-api-8aeb83dfb428]
+[] refactor the code so that you only pass to JSON once at the end. pass props through to each component. (https://stackoverflow.com/questions/47027401/pass-props-stacknavigator) gonna have to make sure to clear json data when someone goes back...
 [X] add logic to check if over 18 in birthday
 [] add text input for other logic for party page
 [] style each page

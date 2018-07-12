@@ -3,7 +3,7 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default class USCitizen extends Component {
     _onPressYesButton = async () => {
-        fetch('http://192.168.0.8:5000/postdata', { //what's the URL...
+        fetch('http://localhost:5000/data', { //what's the URL..
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -26,8 +26,6 @@ export default class USCitizen extends Component {
     _onPressNoButton = () => {
         console.log("USCitizen NO");
         this.props.navigation.navigate('Unable');
-        
-        
     }
 
     
