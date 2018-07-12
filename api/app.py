@@ -1,34 +1,35 @@
 import os
 from flask import Flask, render_template, url_for, json, request
+from data_dict_template import data_dict 
+from populate_form import *
 
 app = Flask(__name__)
 
-@app.route("/data", methods=["GET", "POST"])
+#remove the json.. it does nothing for me.
+
+@app.route("/data", methods=["GET", "POST"]) #disable get
 def postdata():
     if request.method == "POST":
         content = request.get_json()
-        SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-        file = os.path.join(SITE_ROOT, "user-data.json")
-        updateJSONFile(content, file)
-        return json.dumps(content)
+        for key, value in content.items():
+            data_dict[key] = value
+        print(json.dumps(data_dict))
+        return "protected"
+    #this is for testing purposes. disable in production
+    if request.method == "GET": 
+        return json.dumps(data_dict)
+
+@app.route("/complete", methods=["GET"])
+def fillCompleteForm():
     if request.method == "GET":
         SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-        json_url = os.path.join(SITE_ROOT, "user-data.json")
-        data = json.load(open(json_url))
-        return json.dumps(data)
+        templateFile = os.path.join(SITE_ROOT, FORM_TEMPLATE_PATH)
+        outputFile = os.path.join(SITE_ROOT, FORM_OUTPUT_PATH)
+        write_fillable_pdf(templateFile, outputFile, data_dict)
+        return "Form complete"
+        
 
-def updateJSONFile(newData, file):
-    jsonFile = open(file, "r")
-    data = json.load(jsonFile)
-    jsonFile.close()
-
-    for key, value in newData.items():
-        data[key] = value
-
-    jsonFile = open(file, "w+")
-    jsonFile.write(json.dumps(data))
-    jsonFile.close()
-
+#need another route to hit to trigger the pdf creation & email
 
 
 if __name__ == "__main__":

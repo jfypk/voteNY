@@ -3,7 +3,7 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default class USCitizen extends Component {
     _onPressYesButton = async () => {
-        fetch('http://localhost:5000/data', { //what's the URL..
+        fetch('http://localhost:5000/data', { //change URL
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -13,8 +13,7 @@ export default class USCitizen extends Component {
                 "us_citizen_no" : ""
             })
         })
-        .then((response) => response.json())
-        .then((responseJson) => {
+        .then(() => {
             console.log("USCitizen YES");
             this.props.navigation.navigate('Birthday');
         })
