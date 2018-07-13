@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
+import { postData } from '../postData';
 
 export default class Gender extends Component {
 
     _onPressMaleButton = () => {
-        console.log("Gender Male");
-        this.props.navigation.navigate('Email');
+        data = {
+            "male": "X"
+        }
+        postData(data, () => {
+            console.log("Gender Male");
+            this.props.navigation.navigate('Email');
+        });
     }
 
     _onPressFemaleButton = () => {
-        console.log("Gender Female");
-        this.props.navigation.navigate('Email');
+        data = {
+            "female": "X"
+        }
+        postData(data, () => {
+            console.log("Gender Female");
+            this.props.navigation.navigate('Email');
+        });   
     }
 
     _onPressSkipButton = () => {

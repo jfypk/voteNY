@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, TextInput, StyleSheet, Text, View } from 'react-native';
+import { postData } from '../postData';
 
 export default class Phone extends Component {
     constructor(props) {
@@ -11,26 +12,32 @@ export default class Phone extends Component {
     }
 
     _onPressContinueButton = () => {
-        let data = {
-            "tel_area_code" : this.state.areaCode,
-            "tel_first3" : this.state.firstThree,
-            "tel_last4": this.state.lastFour
+        if(this.state.areaCode > 0 && this.state.firstThree > 0 && this.state.lastFour > 0) {
+            let data = {
+                "tel_area_code" : this.state.areaCode,
+                "tel_first3" : this.state.firstThree,
+                "tel_last4": this.state.lastFour
+            }
+            postData(data, () => {
+                console.log("Phone Continue");
+                console.log(this.state.areaCode + ' ' + this.state.firstThree + ' ' + this.state.lastFour);
+                this.props.navigation.navigate('Gender');
+            });
+        } else  {
+            Alert.alert(
+                    'Invalid phone number',
+                    'Input a valid phone number',
+                    [
+                        {text: 'Ok', onPress: () => console.log('Invalid phone number')}
+                        {text: 'Skip', onPress: () => {
+                            console.log('Phone Try & Skip');
+                            this.props.navigation.navigate('Gender');
+                        }}
+                    ],
+                    { cancelable: true }
+                )
         }
-        fetch('http://localhost:5000/data', { //change URL
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        })
-        .then(() => {
-            console.log("Phone Continue");
-            console.log(this.state.areaCode + ' ' + this.state.firstThree + ' ' + this.state.lastFour);
-            this.props.navigation.navigate('Gender');
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+        
     }
 
     _onPressSkipButton = () => {

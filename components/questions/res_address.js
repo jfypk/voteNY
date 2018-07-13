@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Picker, Button, TextInput, StyleSheet, Text, View } from 'react-native';
+import { postData } from '../postData';
 
 export default class ResiAddress extends Component {
     constructor(props) {
@@ -13,9 +14,18 @@ export default class ResiAddress extends Component {
     }
 
     _onPressContinueButton = () => {
-        console.log("ResiAddress Continue");
-        console.log(this.state.address1 + ' ' + this.state.address2 + ' ' + this.state.city + ' ' + this.state.county + ' ' + this.state.zipCode);
-        this.props.navigation.navigate('DifferentMail');
+        data = {
+            "resi_address" : this.state.address1,
+            "resi_apt#": this.state.apt,
+            "resi_city" : this.state.city,
+            "resi_county" : this.state.county,
+            "resi_zip" : this.state.zipCode
+        }
+        postData(data, () => {
+            console.log("ResiAddress Continue");
+            this.props.navigation.navigate('DifferentMail');
+        });
+        
     }
     
     render() {

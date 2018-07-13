@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Button, TextInput, StyleSheet, Text, View } from 'react-native';
+import { Alert, Button, TextInput, StyleSheet, Text, View } from 'react-native';
+import { postData } from '../postData';
 
 export default class Name extends Component {
     constructor(props) {
@@ -11,26 +12,31 @@ export default class Name extends Component {
     }
 
     _onPressContinueButton = () => {
-        let data = {
-            "last_name" : this.state.lastName,
-            "suffix" : this.state.suffix,
-            "first_name": this.state.firstName,
-            "middle_initial": this.state.middleInitial
+        if(this.state.lastName.length > 0 || this.state.firstName.length > 0 ) {
+            let data = {
+                "last_name" : this.state.lastName,
+                "suffix" : this.state.suffix,
+                "first_name": this.state.firstName,
+                "middle_initial": this.state.middleInitial
+            };
+            postData(data, () => {
+                console.log("Name Continue");
+                this.props.navigation.navigate('Phone');
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+        } else {
+            Alert.alert(
+                    'Please input a valid name',
+                    'First and last names are required.',
+                    [
+                        {text: 'Ok', onPress: () => console.log('Invalid name')}
+                    ],
+                    { cancelable: true }
+                )
         }
-        fetch('http://localhost:5000/data', { //change URL
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        })
-        .then(() => {
-            console.log("Name Continue");
-            this.props.navigation.navigate('Phone');
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+        
     }
     
     render() {

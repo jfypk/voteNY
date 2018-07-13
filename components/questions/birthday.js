@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { DatePickerIOS, Button, StyleSheet, Text, View } from 'react-native';
+import { postData } from '../postData';
 
 export default class Birthday extends Component {
     constructor(props) {
@@ -22,30 +23,24 @@ export default class Birthday extends Component {
     _onPressContinueButton = async () => {
         console.log("Birthday Continue");
         if((new Date() - this.state.birthday) > 568025136000) { //18 years
+
             let bday = this.state.birthday
             let monthString = this.makeSingleNumberDouble(bday.getMonth());
             let dateString = this.makeSingleNumberDouble(bday.getDate());
             let yearString = bday.getFullYear().toString();
+
             let data = {
                 "older_than_18_yes": "X",
                 "older_than_18_no" : "",
                 "birth_month" : monthString,
                 "birth_day" : dateString,
                 "birth_year" : yearString
-            }
-            fetch('http://localhost:5000/data', { //change URL
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-            .then(() => {
+            };
+
+            postData(data,() => {
                 this.props.navigation.navigate('Name');
-            })
-            .catch((error) => {
-                console.error(error);
             });
+
         } else {
             console.log("Error: Registrant is too young to vote.");
             this.props.navigation.navigate('Unable');
