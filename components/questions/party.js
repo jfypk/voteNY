@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Picker, Button, TextInput, StyleSheet, Text, View } from 'react-native';
+import { postData } from '../postData';
 
 export default class Party extends Component {
     constructor(props) {
@@ -7,10 +8,164 @@ export default class Party extends Component {
         this.state = { party: 'no party' };
     }
 
+    //need other text input
+
     _onPressContinueButton = () => {
-        console.log("Party Continue");
-        console.log(this.state.party);
-        this.props.navigation.navigate('Absentee');
+        switch(this.state.party) {
+            case "democratic":
+                data = {
+                    "democratic_check": "X",
+                    "republican_check": "",
+                    "conservative_check": "",
+                    "green_party_check": "",
+                    "working_family_check": "",
+                    "independence_check": "",
+                    "women_equality_check": "",
+                    "reform_check": "",
+                    "other_party_check": "",
+                    "no_party_check": "",
+                    "other_party": ""
+                };
+                break;
+            case "republican":
+                data = {
+                    "democratic_check": "",
+                    "republican_check": "X",
+                    "conservative_check": "",
+                    "green_party_check": "",
+                    "working_family_check": "",
+                    "independence_check": "",
+                    "women_equality_check": "",
+                    "reform_check": "",
+                    "other_party_check": "",
+                    "no_party_check": "",
+                    "other_party": ""
+                };
+                break;
+            case "conservative":
+                data = {
+                    "democratic_check": "",
+                    "republican_check": "",
+                    "conservative_check": "X",
+                    "green_party_check": "",
+                    "working_family_check": "",
+                    "independence_check": "",
+                    "women_equality_check": "",
+                    "reform_check": "",
+                    "other_party_check": "",
+                    "no_party_check": "",
+                    "other_party": ""
+                };
+                break;
+            case "green":
+                data = {
+                    "democratic_check": "",
+                    "republican_check": "",
+                    "conservative_check": "",
+                    "green_party_check": "X",
+                    "working_family_check": "",
+                    "independence_check": "",
+                    "women_equality_check": "",
+                    "reform_check": "",
+                    "other_party_check": "",
+                    "no_party_check": "",
+                    "other_party": ""
+                };
+                break;
+            case "working-families":
+                data = {
+                    "democratic_check": "",
+                    "republican_check": "",
+                    "conservative_check": "",
+                    "green_party_check": "",
+                    "working_family_check": "X",
+                    "independence_check": "",
+                    "women_equality_check": "",
+                    "reform_check": "",
+                    "other_party_check": "",
+                    "no_party_check": "",
+                    "other_party": ""
+                };
+                break;
+            case "independence":
+                data = {
+                    "democratic_check": "",
+                    "republican_check": "",
+                    "conservative_check": "",
+                    "green_party_check": "",
+                    "working_family_check": "",
+                    "independence_check": "X",
+                    "women_equality_check": "",
+                    "reform_check": "",
+                    "other_party_check": "",
+                    "no_party_check": "",
+                    "other_party": ""
+                };
+                break;
+            case "women-equality":
+                data = {
+                    "democratic_check": "",
+                    "republican_check": "",
+                    "conservative_check": "",
+                    "green_party_check": "",
+                    "working_family_check": "",
+                    "independence_check": "",
+                    "women_equality_check": "X",
+                    "reform_check": "",
+                    "other_party_check": "",
+                    "no_party_check": "",
+                    "other_party": ""
+                };
+                break;
+            case "reform":
+                data = {
+                    "democratic_check": "",
+                    "republican_check": "",
+                    "conservative_check": "",
+                    "green_party_check": "",
+                    "working_family_check": "",
+                    "independence_check": "",
+                    "women_equality_check": "",
+                    "reform_check": "X",
+                    "other_party_check": "",
+                    "no_party_check": "",
+                    "other_party": ""
+                };
+                break;
+            case "other": 
+                data = {
+                    "democratic_check": "",
+                    "republican_check": "",
+                    "conservative_check": "",
+                    "green_party_check": "",
+                    "working_family_check": "",
+                    "independence_check": "",
+                    "women_equality_check": "",
+                    "reform_check": "",
+                    "other_party_check": "X",
+                    "no_party_check": "",
+                    "other_party": ""
+                };
+                break;
+            default:
+                data = {
+                    "democratic_check": "",
+                    "republican_check": "",
+                    "conservative_check": "",
+                    "green_party_check": "",
+                    "working_family_check": "",
+                    "independence_check": "",
+                    "women_equality_check": "",
+                    "reform_check": "",
+                    "other_party_check": "",
+                    "no_party_check": "X",
+                    "other_party": ""
+                };
+        };
+        postData(data, () => {
+            console.log("Party Continue");
+            this.props.navigation.navigate('Absentee');
+        }); 
     }
     
     //only render TextInput if other is chosen...
@@ -38,10 +193,6 @@ export default class Party extends Component {
                     <Picker.Item label="Other Party" value="other" />
                     <Picker.Item label="No Party Affiliation" value="no party" />
                 </Picker>
-                <TextInput
-                    onChangeText={(party) => this.setState({party})}
-                    value={this.state.party} clearTextOnFocus={true}
-                />
                 <Button
                     onPress={this._onPressContinueButton}
                     title="Continue"

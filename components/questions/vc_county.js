@@ -1,21 +1,31 @@
 import React, { Component } from 'react';
 import { Picker, Button, TextInput, StyleSheet, Text, View } from 'react-native';
+import { postData } from '../postData';
 
 export default class VCCounty extends Component {
     constructor(props) {
         super(props);
-        this.state = { county: 'County' };
+        this.state = { county: '' };
     }
 
     _onPressContinueButton = () => {
-        console.log("VCCounty Continue");
-        console.log(this.state.county);
-        this.props.navigation.navigate('Id_Type');
+        data = {
+                    "vh_county": this.state.county
+                };
+        postData(data, () => {
+            console.log("VCCounty Continue");
+            this.props.navigation.navigate('Id_Type');
+        });
     }
 
     _onPressNoChangeButton = () => {
-        console.log("VCCounty Continue");
-        this.props.navigation.navigate('Id_Type');
+        data = {
+                    "vh_county": ''
+                };
+        postData(data, () => {
+            console.log("VCCounty NoChange");
+            this.props.navigation.navigate('Id_Type');
+        });
     }
     
     render() {
@@ -26,7 +36,7 @@ export default class VCCounty extends Component {
                 </Text>
                 <TextInput
                     onChangeText={(county) => this.setState({county})}
-                    value={this.state.county} clearTextOnFocus={true}
+                    value={this.state.county} placeholder={'County'}
                 />
                 <Button
                     onPress={this._onPressContinueButton}
