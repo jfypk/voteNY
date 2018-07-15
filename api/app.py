@@ -30,7 +30,7 @@ def fillCompleteForm():
         outputFile = os.path.join(SITE_ROOT, FORM_OUTPUT_PATH)
         write_fillable_pdf(templateFile, outputFile, data_dict)
         
-        send_mail("votenyapp@gmail.com", data_dict["email"], "Thanks!", "You the best", files=[outputFile])
+        send_mail("votenyapp@gmail.com", data_dict["email"], email_subject, email_body, files=[outputFile])
 
         os.remove(outputFile)
         print("voterreg form deleted")
