@@ -13,7 +13,7 @@ export default class Email extends Component {
     }
 
     _onPressContinueButton = () => {
-        confirmedEmail = this.state.email === this.state.confirmEmail;
+        confirmedEmail = this.state.email.toLowerCase() === this.state.confirmEmail.toLowerCase();
         if(validEmail && confirmedEmail) {
             let data = {
                 "email" : this.state.email
@@ -80,11 +80,11 @@ export default class Email extends Component {
                 </Text>
                 <TextInput
                     onChangeText={(text) => this.validate(text)}
-                    value={this.state.email} placeholder={"Email"} keyboardType = {"email-address"}
+                    value={this.state.email} placeholder={"Email"} keyboardType = {"email-address"} autoCapitalize = 'none'
                 />
                 <TextInput
                     onChangeText={(text2) => this.validate2(text2)}
-                    value={this.state.confirmEmail} placeholder={"Confirm email"} keyboardType = {"email-address"}
+                    value={this.state.confirmEmail} placeholder={"Confirm email"} keyboardType = {"email-address"} autoCapitalize = 'none'
                 />
                 <Button
                     onPress={this._onPressContinueButton}
