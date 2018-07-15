@@ -9,6 +9,9 @@ app = Flask(__name__)
 #remove the json.. it does nothing for me.
 data_dict = data_dict_template
 
+email_subject = "Your NYS Voter Registration Form from VoteNY!"
+email_body = "Thanks for using VoteNY!\n\nSimply print out the attached PDF, sign the affadavit, stick a stamp on the envelope and drop it in your local mailbox.\n\nYour vote shapes your future. If you have any questions, simply respond to this email.\n\nBest, Vote NY!"
+
 @app.route("/data", methods=["POST"])
 def postdata():
     if request.method == "POST":
