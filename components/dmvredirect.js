@@ -7,7 +7,7 @@ export default class DMV_Redirect extends Component {
     }
 
     _onPressContinueButton = () => {
-        fetch('http://localhost:5000/start')
+        fetch('https://voteny-api-heroku.herokuapp.com/start')
         .then(
             function(response) {
             if (response.status !== 200) {

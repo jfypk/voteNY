@@ -4,7 +4,7 @@ import { Button, TextInput, StyleSheet, Text, View } from 'react-native';
 export default class Complete extends Component {
 
     _onPressEmailButton = () => {
-        fetch('http://localhost:5000/complete')
+        fetch('https://voteny-api-heroku.herokuapp.com/complete')
         .then(
             function(response) {
             if (response.status !== 200) {

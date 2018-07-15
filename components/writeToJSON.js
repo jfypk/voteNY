@@ -1,5 +1,5 @@
 _onPressYesButton = async () => {
-        fetch('http://localhost:5000/data', { //what's the URL..
+        fetch('https://voteny-api-heroku.herokuapp.com/data', { //what's the URL..
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -22,3 +22,5 @@ api/user-data-template.json
 api/user-data.json
 api/login.py
 form_fill/*
+
+notes.md

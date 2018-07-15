@@ -1,5 +1,5 @@
 export const postData = (data, resFunc) => {
-    fetch('http://localhost:5000/data', { //change URL
+    fetch('https://voteny-api-heroku.herokuapp.com/data', { //change URL
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
