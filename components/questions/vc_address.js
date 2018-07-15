@@ -1,26 +1,36 @@
 import React, { Component } from 'react';
 import { Button, TextInput, StyleSheet, Text, View } from 'react-native';
+import { postData } from '../postData';
 
 export default class VCAddress extends Component {
     constructor(props) {
         super(props);
-        this.state = { address1: 'Address (No P.O. Box)',
-                       apt: 'Apt. number',
-                       city: 'City/Town/Village',
-                       county: 'County',
-                       zipCode: 'Zip Code'
+        this.state = { address1: '',
+                       apt: '',
+                       city: '',
+                       zipCode: ''
                      };
     }
 
     _onPressContinueButton = () => {
-        console.log("VCAddress Continue");
-        console.log(this.state.address1 + ' ' + this.state.address2 + ' ' + this.state.city + ' ' + this.state.county + ' ' + this.state.zipCode);
-        this.props.navigation.navigate('VCCounty');
+        let add = '' + this.state.address1 + this.state.apt + this.state.city + this.state.zipCode;
+        data = {
+            "vh_address" : add
+        };
+        postData(data, () => {
+            console.log("VCAddress Continue");
+            this.props.navigation.navigate('VCCounty');
+        });
     }
 
     _onPressNoChangeButton = () => {
-        console.log("VCAddress No Change");
-        this.props.navigation.navigate('VCCounty');
+        data = {
+            "vh_address" : ''
+        };
+        postData(data, () => {
+            console.log("VCAddress No Change");
+            this.props.navigation.navigate('VCCounty');
+        });
     }
     
     render() {
@@ -31,19 +41,19 @@ export default class VCAddress extends Component {
                 </Text>
                 <TextInput
                     onChangeText={(address1) => this.setState({address1})}
-                    value={this.state.address1} clearTextOnFocus={true}
+                    value={this.state.address1} placeholder={'Address (No P.O. Box'}
                 />
                 <TextInput
-                    onChangeText={(address2) => this.setState({address2})}
-                    value={this.state.address2} clearTextOnFocus={true}
+                    onChangeText={(apt) => this.setState({apt})}
+                    value={this.state.apt} placeholder={'Apartment #'}
                 />
                 <TextInput
                     onChangeText={(city) => this.setState({city})}
-                    value={this.state.city} clearTextOnFocus={true}
+                    value={this.state.city} placeholder={'City/Town/Village'}
                 />
                 <TextInput
                     onChangeText={(zipCode) => this.setState({zipCode})}
-                    value={this.state.zipCode} clearTextOnFocus={true}
+                    value={this.state.zipCode} placeholder={'Zip Code'}
                 />
                 <Button
                     onPress={this._onPressContinueButton}

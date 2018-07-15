@@ -4,8 +4,27 @@ import { Button, TextInput, StyleSheet, Text, View } from 'react-native';
 export default class Complete extends Component {
 
     _onPressEmailButton = () => {
-        console.log("Complete Email");
-        this.props.navigation.navigate('Home');
+        fetch('http://localhost:5000/complete')
+        .then(
+            function(response) {
+            if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code: ' +
+                response.status);
+                return;
+            }
+            // Examine the text in the response
+            response.json().then(function(data) {
+                console.log(data);
+            });
+            }
+        )
+        .then(() => { 
+            console.log("Complete Email");
+            this.props.navigation.navigate('Home');
+        })
+        .catch(function(err) {
+            console.log('Fetch Error :-S', err);
+        });
     }
     
     render() {

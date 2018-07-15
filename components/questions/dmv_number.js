@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, TextInput, StyleSheet, Text, View } from 'react-native';
+import { postData } from '../postData';
 
 export default class DMV_Number extends Component {
     constructor(props) {
@@ -8,9 +9,13 @@ export default class DMV_Number extends Component {
     }
 
     _onPressContinueButton = () => {
-        console.log("DMV_Number Continue");
-        console.log(this.state.dmvNumber);
-        this.props.navigation.navigate('Party');
+        let data = {
+            "dmv" : this.state.dmvNumber
+        };
+        postData(data,() => {
+            console.log("DMV_Number Continue");
+            this.props.navigation.navigate('Party');
+        });
     }
     
     render() {
@@ -21,7 +26,7 @@ export default class DMV_Number extends Component {
                 </Text>
                 <TextInput
                     onChangeText={(dmvNumber) => this.setState({dmvNumber})}
-                    value={this.state.dmvNumber} maxLength={9} clearTextOnFocus={true}
+                    value={this.state.dmvNumber} maxLength={9} placeholder={'123456789'}
                 />
                 <Button
                     onPress={this._onPressContinueButton}

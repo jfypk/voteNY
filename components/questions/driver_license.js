@@ -8,9 +8,29 @@ export default class DriverLicense extends Component {
     }
 
     _onPressNoButton = () => {
-        console.log("driver license NO");
-        this.props.navigation.navigate('DriverLicenseNo');
+        fetch('http://localhost:5000/start')
+        .then(
+            function(response) {
+            if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code: ' +
+                response.status);
+                return;
+            }
+            // Examine the text in the response
+            response.json().then(function(data) {
+                console.log(data);
+            });
+            }
+        )
+        .then(() => { 
+            console.log("driver license NO");
+            this.props.navigation.navigate('DriverLicenseNo');
+        })
+        .catch(function(err) {
+            console.log('Fetch Error :-S', err);
+        });
     }
+    
     render() {
         return(
             <View style={styles.container}>

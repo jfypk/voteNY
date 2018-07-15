@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
+import { postData } from '../postData';
 
 export default class Absentee extends Component {
-    _onPressYesButton = () => {
-        console.log("Absentee YES");
-        this.props.navigation.navigate('ElectionWorker');
+    _onPressYesButton = async () => {
+        data = {
+                    "absentee_check": "X"
+                };
+        postData(data, () => {
+            console.log("Absentee YES");
+            this.props.navigation.navigate('ElectionWorker');
+        });
     }
 
     _onPressNoButton = () => {
-        console.log("Absentee NO");
+        data = {
+                    "absentee_check": ""
+                };
+        postData(data, () => {
+            console.log("Absentee NO");
         this.props.navigation.navigate('ElectionWorker');
+        });
+        
         
         
     }

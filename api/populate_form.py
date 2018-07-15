@@ -2,11 +2,10 @@
 
 import os
 import pdfrw
-from user_data import userinfoData 
 
 
-INVOICE_TEMPLATE_PATH = 'template_final.pdf'
-INVOICE_OUTPUT_PATH = 'completed.pdf'
+FORM_TEMPLATE_PATH = 'template_final.pdf'
+FORM_OUTPUT_PATH = 'completed.pdf'
 
 
 ANNOT_KEY = '/Annots'
@@ -31,4 +30,4 @@ def write_fillable_pdf(input_pdf_path, output_pdf_path, data_dict):
     pdfrw.PdfWriter().write(output_pdf_path, template_pdf)
 
 if __name__ == '__main__':
-    write_fillable_pdf(INVOICE_TEMPLATE_PATH, INVOICE_OUTPUT_PATH, userinfoData)
+    write_fillable_pdf(FORM_TEMPLATE_PATH, FORM_OUTPUT_PATH, userinfoData)

@@ -1,24 +1,46 @@
 import React, { Component } from 'react';
 import { Button, TextInput, StyleSheet, Text, View } from 'react-native';
+import { postData } from '../postData';
 
 export default class VCName extends Component {
     constructor(props) {
         super(props);
-        this.state = { firstName: 'First Name',
-                       middleInitial: 'Middle Initial',
-                       lastName: 'Last Name',
-                       suffix: 'Suffix' };
+        this.state = { firstName: '',
+                       middleInitial: '',
+                       lastName: '',
+                       suffix: '' };
     }
 
-    _onPressContinueButton = () => {
-        console.log("VCName Continue");
-        console.log(this.state.firstName + ' ' + this.state.middleInitial + ' ' + this.state.lastName + ' ' + this.state.suffix);
-        this.props.navigation.navigate('VCAddress');
+    _onPressContinueButton = () => { 
+        if(this.state.lastName.length > 0 || this.state.firstName.length > 0 ) {
+            let n = '' + this.state.firstName + this.state.middleInitial + this.state.lastName + this.state.suffix;
+            let data = {
+                "vh_name" : n
+            };
+            postData(data, () => {
+                console.log("VCName Continue");
+                this.props.navigation.navigate('VCAddress');
+            });
+        } else {
+            Alert.alert(
+                    'Please input a valid name',
+                    'First and last names are required.',
+                    [
+                        {text: 'Ok', onPress: () => console.log('Invalid name')}
+                    ],
+                    { cancelable: true }
+                )
+        }
     }
 
     _onPressNoChangeButton = () => {
-        console.log("VCName No Change");
-        this.props.navigation.navigate('VCAddress');
+        data = {
+                    "vh_name": ''
+                }
+        postData(data, () => {
+            console.log("VCName No Change");
+            this.props.navigation.navigate('VCAddress');
+        }); 
     }
     
     render() {
@@ -29,19 +51,19 @@ export default class VCName extends Component {
                 </Text>
                 <TextInput
                     onChangeText={(firstName) => this.setState({firstName})}
-                    value={this.state.firstName} clearTextOnFocus={true}
+                    value={this.state.firstName} placeholder={"First Name"}
                 />
                 <TextInput
                     onChangeText={(middleInitial) => this.setState({middleInitial})}
-                    value={this.state.middleInitial} maxLength={1} clearTextOnFocus={true}
+                    value={this.state.middleInitial} maxLength={1} placeholder={"Middle Initial"}
                 />
                 <TextInput
                     onChangeText={(lastName) => this.setState({lastName})}
-                    value={this.state.lastName} clearTextOnFocus={true}
+                    value={this.state.lastName} placeholder={"Last Name"}
                 />
                 <TextInput
                     onChangeText={(suffix) => this.setState({suffix})}
-                    value={this.state.suffix} clearTextOnFocus={true}
+                    value={this.state.suffix} placeholder={"Suffix (e.g. Jr., III, etc.)"}
                 />
                 <Button
                     onPress={this._onPressContinueButton}

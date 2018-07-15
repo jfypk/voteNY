@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Alert, Button, TextInput, StyleSheet, Text, View } from 'react-native';
+import { postData } from '../postData';
 
 export default class Email extends Component {
 
@@ -12,13 +13,18 @@ export default class Email extends Component {
     }
 
     _onPressContinueButton = () => {
-        console.log("Email Continue");
-        console.log(this.state.email);
         confirmedEmail = this.state.email === this.state.confirmEmail;
         if(validEmail && confirmedEmail) {
-            this.props.navigation.navigate('ResiAddress');
+            data = {
+                "email" : this.state.email
+            };
+            postData(data, () => {
+                console.log("Email Continue");
+                this.props.navigation.navigate('ResiAddress');
+            });
         } else {
             if(!validEmail) {
+                console.log("Invalid Email");
                 Alert.alert(
                     'Invalid email addresses',
                     'Please try again.',
@@ -26,8 +32,9 @@ export default class Email extends Component {
                         {text: 'Ok', onPress: () => console.log('Ok')}
                     ],
                     { cancelable: false }
-                )
+                );
             } else if (!confirmedEmail) {
+                console.log("Unconfirmed Email");
                 Alert.alert(
                     "Email addresses don't match",
                     'Please try again.',
@@ -35,11 +42,9 @@ export default class Email extends Component {
                         {text: 'Ok', onPress: () => console.log('Ok')}
                     ],
                     { cancelable: false }
-                )
+                );
             }
-            
         }
-        
     }
     
     validate = (text) => {

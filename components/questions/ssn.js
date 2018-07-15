@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import { Button, TextInput, StyleSheet, Text, View } from 'react-native';
+import { postData } from '../postData';
 
 export default class SSN extends Component {
     constructor(props) {
         super(props);
-        this.state = { ssnNumber: 'XXXX' };
+        this.state = { ssnNumber: '' };
     }
 
     _onPressContinueButton = () => {
-        console.log("SSN_Number Continue");
-        console.log(this.state.ssnNumber);
-        this.props.navigation.navigate('Party');
+        data = {
+                    "ssn": this.state.ssnNumber
+                };
+        postData(data, () => {
+            console.log("SSN_Number Continue");
+            console.log(this.state.ssnNumber);
+            this.props.navigation.navigate('Party');
+        });
     }
     
     render() {
@@ -21,7 +27,7 @@ export default class SSN extends Component {
                 </Text>
                 <TextInput
                     onChangeText={(ssnNumber) => this.setState({ssnNumber})}
-                    value={this.state.ssnNumber} maxLength={4} clearTextOnFocus={true}
+                    value={this.state.ssnNumber} maxLength={4} placeholder={'1234'}
                 />
                 <Button
                     onPress={this._onPressContinueButton}
