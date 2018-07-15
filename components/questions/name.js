@@ -22,9 +22,6 @@ export default class Name extends Component {
             postData(data, () => {
                 console.log("Name Continue");
                 this.props.navigation.navigate('Phone');
-            })
-            .catch((error) => {
-                console.error(error);
             });
         } else {
             Alert.alert(
@@ -34,9 +31,8 @@ export default class Name extends Component {
                         {text: 'Ok', onPress: () => console.log('Invalid name')}
                     ],
                     { cancelable: true }
-                )
+                );
         }
-        
     }
     
     render() {

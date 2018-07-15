@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import { TextInput, Button, StyleSheet, Text, View } from 'react-native';
-    
+import { postData } from '../postData';
+
 export default class LastVoteYear extends Component {
     constructor(props) {
         super(props);
-        this.state = { voteYear: 'XXXX' };
+        this.state = { voteYear: '' };
     }
 
     _onPressContinueButton = () => {
-        console.log("LastVote Continue");
-        this.props.navigation.navigate('VCName');
-    }
+        data = { "vh_year": this.state.voteYear };
+        postData(data, () => {
+            console.log("LastVote Continue");
+            this.props.navigation.navigate('VCName');
+        }); 
+    };
 
     render() {
         return(
@@ -20,7 +24,7 @@ export default class LastVoteYear extends Component {
                 </Text>
                 <TextInput
                     onChangeText={(voteYear) => this.setState({voteYear})}
-                    value={this.state.voteYear} maxLength={4} clearTextOnFocus={true}
+                    value={this.state.voteYear} maxLength={4} placeholder={'e.g. 2014'}
                 />
                 <Button
                     onPress={this._onPressContinueButton}

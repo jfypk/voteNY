@@ -5,10 +5,10 @@ import { postData } from '../postData';
 export default class MailAddress extends Component {
     constructor(props) {
         super(props);
-        this.state = { address1: 'Address or P.O. Box',
-                       pobox: 'P.O. Box',
-                       city: 'City/Town/Village',
-                       zipCode: 'Zip Code'
+        this.state = { address1: '',
+                       pobox: '',
+                       city: '',
+                       zipCode: ''
                      };
     }
 
@@ -18,10 +18,10 @@ export default class MailAddress extends Component {
             "mail_po": this.state.pobox,
             "mail_zip": this.state.zipCode,
             "mail_city": this.state.city
-        }
+        };
         postData(data, () => {
             console.log("MailAddress Continue");
-        this.props.navigation.navigate('VotedBefore');
+            this.props.navigation.navigate('VotedBefore');
         });
     }
     
@@ -33,19 +33,19 @@ export default class MailAddress extends Component {
                 </Text>
                 <TextInput
                     onChangeText={(address1) => this.setState({address1})}
-                    value={this.state.address1} clearTextOnFocus={true}
+                    value={this.state.address1} placeholder={'Address or P.O. Box'}
                 />
                 <TextInput
                     onChangeText={(pobox) => this.setState({pobox})}
-                    value={this.state.pobox} clearTextOnFocus={true}
+                    value={this.state.pobox} placeholder={'P.O. Box'}
                 />
                 <TextInput
                     onChangeText={(city) => this.setState({city})}
-                    value={this.state.city} clearTextOnFocus={true}
+                    value={this.state.city} placeholder={'City/Town/Village'}
                 />
                 <TextInput
                     onChangeText={(zipCode) => this.setState({zipCode})}
-                    value={this.state.zipCode} clearTextOnFocus={true} maxLength={5}
+                    value={this.state.zipCode} placeholder={'Zip Code'} maxLength={5}
                 />
                 <Button
                     onPress={this._onPressContinueButton}

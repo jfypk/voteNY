@@ -5,11 +5,11 @@ import { postData } from '../postData';
 export default class ResiAddress extends Component {
     constructor(props) {
         super(props);
-        this.state = { address1: 'Address (No P.O. Box)',
-                       apt: 'Apt. number',
-                       city: 'City/Town/Village',
-                       county: 'County',
-                       zipCode: 'Zip Code'
+        this.state = { address1: '',
+                       apt: '',
+                       city: '',
+                       county: '',
+                       zipCode: ''
                      };
     }
 
@@ -25,7 +25,6 @@ export default class ResiAddress extends Component {
             console.log("ResiAddress Continue");
             this.props.navigation.navigate('DifferentMail');
         });
-        
     }
     
     render() {
@@ -36,19 +35,19 @@ export default class ResiAddress extends Component {
                 </Text>
                 <TextInput
                     onChangeText={(address1) => this.setState({address1})}
-                    value={this.state.address1} clearTextOnFocus={true}
+                    value={this.state.address1} placeholder={'Address (No P.O. Box)'}
                 />
                 <TextInput
                     onChangeText={(address2) => this.setState({address2})}
-                    value={this.state.address2} clearTextOnFocus={true}
+                    value={this.state.address2} placeholder={'Apartment #'}
                 />
                 <TextInput
                     onChangeText={(city) => this.setState({city})}
-                    value={this.state.city} clearTextOnFocus={true}
+                    value={this.state.city} placeholder={'City/Town/Village'}
                 />
                 <TextInput
                     onChangeText={(zipCode) => this.setState({zipCode})}
-                    value={this.state.zipCode} clearTextOnFocus={true} maxLength={5}
+                    value={this.state.zipCode} placeholder={'Zip Code'} maxLength={5}
                 />
                 <Picker
                     selectedValue={this.state.county}

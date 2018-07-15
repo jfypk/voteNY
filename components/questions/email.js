@@ -17,7 +17,7 @@ export default class Email extends Component {
         if(validEmail && confirmedEmail) {
             data = {
                 "email" : this.state.email
-            }
+            };
             postData(data, () => {
                 console.log("Email Continue");
                 this.props.navigation.navigate('ResiAddress');
@@ -32,7 +32,7 @@ export default class Email extends Component {
                         {text: 'Ok', onPress: () => console.log('Ok')}
                     ],
                     { cancelable: false }
-                )
+                );
             } else if (!confirmedEmail) {
                 console.log("Unconfirmed Email");
                 Alert.alert(
@@ -42,9 +42,8 @@ export default class Email extends Component {
                         {text: 'Ok', onPress: () => console.log('Ok')}
                     ],
                     { cancelable: false }
-                )
+                );
             }
-            
         }
     }
     

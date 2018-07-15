@@ -6,8 +6,9 @@ export default class Gender extends Component {
 
     _onPressMaleButton = () => {
         data = {
-            "male": "X"
-        }
+            "male": "X",
+            "female": ""
+        };
         postData(data, () => {
             console.log("Gender Male");
             this.props.navigation.navigate('Email');
@@ -16,8 +17,9 @@ export default class Gender extends Component {
 
     _onPressFemaleButton = () => {
         data = {
+            "male": "",
             "female": "X"
-        }
+        };
         postData(data, () => {
             console.log("Gender Female");
             this.props.navigation.navigate('Email');
@@ -25,8 +27,14 @@ export default class Gender extends Component {
     }
 
     _onPressSkipButton = () => {
-        console.log("Gender Skip");
+        data = {
+            "male": "",
+            "female": ""
+        };
+        postData(data, () => {
+            console.log("Gender Skip");
         this.props.navigation.navigate('Email');
+        });     
     }
 
     render() {

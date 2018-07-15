@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Picker, Button, StyleSheet, Text, View } from 'react-native';
+import { postData } from '../postData';
 
 export default class Id_Type extends Component {
     constructor(props) {
@@ -11,11 +12,35 @@ export default class Id_Type extends Component {
         console.log("Id_Type Continue");
         console.log(this.state.id_type);
         if (this.state.id_type === "dmv") {
-            this.props.navigation.navigate('DMV_Number');
+            data = {
+                    "id_ssn_check": "",
+                    "no_id_check": "",
+                    "id_dmv_check": "X"
+                };
+            postData(data, () => {
+                console.log("USCitizen YES");
+                this.props.navigation.navigate('DMV_Number');
+            });
         } else if (this.state.id_type === "ssn") {
-            this.props.navigation.navigate('SSN_Number');
+            data = {
+                    "id_ssn_check": "X",
+                    "no_id_check": "",
+                    "id_dmv_check": ""
+                };
+            postData(data, () => {
+                console.log("USCitizen YES");
+                this.props.navigation.navigate('SSN_Number');
+            });
         } else if (this.state.id_type === "no_id") {
-            this.props.navigation.navigate('Party');
+            data = {
+                    "id_ssn_check": "",
+                    "no_id_check": "X",
+                    "id_dmv_check": ""
+                };
+            postData(data, () => {
+                console.log("USCitizen YES");
+                this.props.navigation.navigate('Party');
+            });
         } else {
             console.log("ERROR");
         }

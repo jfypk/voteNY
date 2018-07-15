@@ -1,15 +1,26 @@
 import React, { Component } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
+import { postData } from '../postData';
 
 export default class ElectionWorker extends Component {
     _onPressYesButton = () => {
-        console.log("ElectionWorker YES");
-        this.props.navigation.navigate('Complete');
+        data = {
+                    "election_worker_check": "X"
+                };
+        postData(data, () => {
+            console.log("ElectionWorker YES");
+            this.props.navigation.navigate('Complete');
+        });
     }
 
     _onPressNoButton = () => {
-        console.log("ElectionWorker NO");
-        this.props.navigation.navigate('Complete');
+        data = {
+                    "election_worker_check": ""
+                };
+        postData(data, () => {
+            console.log("ElectionWorker NO");
+            this.props.navigation.navigate('Complete');
+        });
         
         
     }

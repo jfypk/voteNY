@@ -5,9 +5,9 @@ import { postData } from '../postData';
 export default class USCitizen extends Component {
     _onPressYesButton = async () => {
         data = {
-                    "us_citizen_yes": "",
-                    "us_citizen_no" : "X"
-                }
+                    "us_citizen_yes": "X",
+                    "us_citizen_no" : ""
+                };
         postData(data, () => {
             console.log("USCitizen YES");
             this.props.navigation.navigate('Birthday');

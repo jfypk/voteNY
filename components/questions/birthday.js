@@ -14,9 +14,9 @@ export default class Birthday extends Component {
 
     makeSingleNumberDouble = num => {
         if(num < 10) {
-            return "0" + num.toString()
+            return "0" + num.toString();
         } else {
-            return num.toString()
+            return num.toString();
         }
     }
 
@@ -24,7 +24,7 @@ export default class Birthday extends Component {
         console.log("Birthday Continue");
         if((new Date() - this.state.birthday) > 568025136000) { //18 years
 
-            let bday = this.state.birthday
+            let bday = this.state.birthday;
             let monthString = this.makeSingleNumberDouble(bday.getMonth());
             let dateString = this.makeSingleNumberDouble(bday.getDate());
             let yearString = bday.getFullYear().toString();

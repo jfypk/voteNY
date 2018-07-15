@@ -1,16 +1,32 @@
 import React, { Component } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
+import { postData } from '../postData';
 
 export default class VotedBefore extends Component {
     _onPressYesButton = () => {
-        console.log("VotedBefore YES");
-        this.props.navigation.navigate('LastVoteYear');
-    }
+        let data = {
+            "voted_before_yes": "X",
+            "voted_before_no": ""
+        };
+        postData(data, () => {
+            console.log("VotedBefore YES");
+            this.props.navigation.navigate('LastVoteYear');
+        });
+    };
 
     _onPressNoButton = () => {
-        console.log("VotedBefore NO");
-        this.props.navigation.navigate('Id_Type');
-    }
+        let data = {
+            "voted_before_yes": "",
+            "voted_before_no": "X"
+        };
+        postData(data, () => {
+            console.log("VotedBefore NO");
+            this.props.navigation.navigate('Id_Type');
+        });
+    };
+    
+
+    
     
     render() {
         return(

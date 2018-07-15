@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, TextInput, StyleSheet, Text, View } from 'react-native';
+import { Alert, Button, TextInput, StyleSheet, Text, View } from 'react-native';
 import { postData } from '../postData';
 
 export default class Phone extends Component {
@@ -17,7 +17,7 @@ export default class Phone extends Component {
                 "tel_area_code" : this.state.areaCode,
                 "tel_first3" : this.state.firstThree,
                 "tel_last4": this.state.lastFour
-            }
+            };
             postData(data, () => {
                 console.log("Phone Continue");
                 console.log(this.state.areaCode + ' ' + this.state.firstThree + ' ' + this.state.lastFour);
@@ -28,7 +28,7 @@ export default class Phone extends Component {
                     'Invalid phone number',
                     'Input a valid phone number',
                     [
-                        {text: 'Ok', onPress: () => console.log('Invalid phone number')}
+                        {text: 'Ok', onPress: () => console.log('Invalid phone number')},
                         {text: 'Skip', onPress: () => {
                             console.log('Phone Try & Skip');
                             this.props.navigation.navigate('Gender');
@@ -53,15 +53,15 @@ export default class Phone extends Component {
                 </Text>
                 <TextInput
                     onChangeText={(areaCode) => this.setState({areaCode})}
-                    value={this.state.areaCode} maxLength={3} placeholder={'XXX'}
+                    value={this.state.areaCode} maxLength={3} placeholder={'123'}
                 />
                 <TextInput
                     onChangeText={(firstThree) => this.setState({firstThree})}
-                    value={this.state.firstThree} maxLength={3} placeholder={'XXX'}
+                    value={this.state.firstThree} maxLength={3} placeholder={'456'}
                 />
                 <TextInput
                     onChangeText={(lastFour) => this.setState({lastFour})}
-                    value={this.state.lastFour} maxLength={4} placeholder={'XXXX'}
+                    value={this.state.lastFour} maxLength={4} placeholder={'7890'}
                 />
                 <Button
                     onPress={this._onPressContinueButton}
