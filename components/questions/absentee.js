@@ -4,9 +4,10 @@ import { postData } from '../postData';
 
 export default class Absentee extends Component {
     _onPressYesButton = async () => {
-        data = {
+        let data = {
                     "absentee_check": "X"
                 };
+
         postData(data, () => {
             console.log("Absentee YES");
             this.props.navigation.navigate('ElectionWorker');

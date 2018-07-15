@@ -9,7 +9,7 @@ export default class SSN extends Component {
     }
 
     _onPressContinueButton = () => {
-        data = {
+        let data = {
                     "ssn": this.state.ssnNumber
                 };
         postData(data, () => {
@@ -27,7 +27,7 @@ export default class SSN extends Component {
                 </Text>
                 <TextInput
                     onChangeText={(ssnNumber) => this.setState({ssnNumber})}
-                    value={this.state.ssnNumber} maxLength={4} placeholder={'1234'}
+                    value={this.state.ssnNumber} maxLength={4} placeholder={'1234'} keyboardType = {"number-pad"}
                 />
                 <Button
                     onPress={this._onPressContinueButton}

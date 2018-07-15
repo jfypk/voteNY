@@ -4,7 +4,7 @@ import { postData } from '../postData';
 
 export default class USCitizen extends Component {
     _onPressYesButton = async () => {
-        data = {
+        let data = {
                     "us_citizen_yes": "X",
                     "us_citizen_no" : ""
                 };

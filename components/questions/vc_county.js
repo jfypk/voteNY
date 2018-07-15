@@ -9,7 +9,7 @@ export default class VCCounty extends Component {
     }
 
     _onPressContinueButton = () => {
-        data = {
+        let data = {
                     "vh_county": this.state.county
                 };
         postData(data, () => {

@@ -11,6 +11,7 @@ export default class Id_Type extends Component {
     _onPressContinueButton = () => {
         console.log("Id_Type Continue");
         console.log(this.state.id_type);
+        let data = {};
         if (this.state.id_type === "dmv") {
             data = {
                     "id_ssn_check": "",

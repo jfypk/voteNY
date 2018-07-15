@@ -8,13 +8,14 @@
 [X] should the fetch be done in its own component that i call again and again? 
 [X] change textinputs to have placeholder text
 [X] add email capability https://github.com/chirag04/react-native-mail
+[X] refactor the code so that you only pass to JSON once at the end. pass props through to each component. (https://stackoverflow.com/questions/47027401/pass-props-stacknavigator) gonna have to make sure to clear json data when someone goes back...
+[X] add list of counties and map it
 
-
-
-[] refactor the code so that you only pass to JSON once at the end. pass props through to each component. (https://stackoverflow.com/questions/47027401/pass-props-stacknavigator) gonna have to make sure to clear json data when someone goes back...
+[] find out why there are data leaks in the process... (something to do with data_dict?)
+[] what happens when multiple people are using the app at once... how does the server deal with the incoming data?
 [] add text input for other logic for party page
 [] style each page
-[] add error messages to console log for reason of unable to register
+[] add error messages to console log for reason of unable to register and on Unable page
 [] prevent people from entering letters in phone numbers (https://stackoverflow.com/questions/32946793/react-native-textinput-that-only-accepts-numeric-characters)
 [] fix res address page look.
 [] add required info logic to required info
@@ -23,5 +24,4 @@
 [] SSN should only allow numbers
 [] DMV should only allow numbers
 [] zip code in vc_addrss should be numbers only
-[] add list of counties and map it
 [] change file names and data_dicts for different instances of users so that data is not overwritten

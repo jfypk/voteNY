@@ -15,7 +15,7 @@ export default class Email extends Component {
     _onPressContinueButton = () => {
         confirmedEmail = this.state.email === this.state.confirmEmail;
         if(validEmail && confirmedEmail) {
-            data = {
+            let data = {
                 "email" : this.state.email
             };
             postData(data, () => {
@@ -48,7 +48,6 @@ export default class Email extends Component {
     }
     
     validate = (text) => {
-        console.log(text);
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
         if(reg.test(text) === false) {
             console.log("Email is Not Correct");
@@ -64,7 +63,6 @@ export default class Email extends Component {
 
     //need a more elegant solution to this...
     validate2 = (text) => {
-        console.log(text);
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
         if(reg.test(text) === false) {
             this.setState({confirmEmail:text});
@@ -82,11 +80,11 @@ export default class Email extends Component {
                 </Text>
                 <TextInput
                     onChangeText={(text) => this.validate(text)}
-                    value={this.state.email} placeholder="Email"
+                    value={this.state.email} placeholder={"Email"} keyboardType = {"email-address"}
                 />
                 <TextInput
                     onChangeText={(text2) => this.validate2(text2)}
-                    value={this.state.confirmEmail} placeholder="Confirm email"
+                    value={this.state.confirmEmail} placeholder={"Confirm email"} keyboardType = {"email-address"}
                 />
                 <Button
                     onPress={this._onPressContinueButton}

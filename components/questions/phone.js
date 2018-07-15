@@ -20,7 +20,6 @@ export default class Phone extends Component {
             };
             postData(data, () => {
                 console.log("Phone Continue");
-                console.log(this.state.areaCode + ' ' + this.state.firstThree + ' ' + this.state.lastFour);
                 this.props.navigation.navigate('Gender');
             });
         } else  {
@@ -53,15 +52,15 @@ export default class Phone extends Component {
                 </Text>
                 <TextInput
                     onChangeText={(areaCode) => this.setState({areaCode})}
-                    value={this.state.areaCode} maxLength={3} placeholder={'123'}
+                    value={this.state.areaCode} maxLength={3} placeholder={'123'} keyboardType = {"phone-pad"}
                 />
                 <TextInput
                     onChangeText={(firstThree) => this.setState({firstThree})}
-                    value={this.state.firstThree} maxLength={3} placeholder={'456'}
+                    value={this.state.firstThree} maxLength={3} placeholder={'456'} keyboardType = {"phone-pad"}
                 />
                 <TextInput
                     onChangeText={(lastFour) => this.setState({lastFour})}
-                    value={this.state.lastFour} maxLength={4} placeholder={'7890'}
+                    value={this.state.lastFour} maxLength={4} placeholder={'7890'} keyboardType = {"phone-pad"}
                 />
                 <Button
                     onPress={this._onPressContinueButton}

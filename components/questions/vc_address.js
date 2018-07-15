@@ -13,9 +13,9 @@ export default class VCAddress extends Component {
     }
 
     _onPressContinueButton = () => {
-        let add = '' + this.state.address1 + this.state.apt + this.state.city + this.state.zipCode;
-        data = {
-            "vh_address" : add
+        let addr = '' + this.state.address1 + ' ' + this.state.apt + ' ' + this.state.city + ' ' + this.state.zipCode;
+        let data = {
+            "vh_address" : addr
         };
         postData(data, () => {
             console.log("VCAddress Continue");
@@ -53,7 +53,7 @@ export default class VCAddress extends Component {
                 />
                 <TextInput
                     onChangeText={(zipCode) => this.setState({zipCode})}
-                    value={this.state.zipCode} placeholder={'Zip Code'}
+                    value={this.state.zipCode} placeholder={'Zip Code'} maxLength={5} keyboardType = {"number-pad"}
                 />
                 <Button
                     onPress={this._onPressContinueButton}

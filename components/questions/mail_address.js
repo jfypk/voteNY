@@ -13,7 +13,7 @@ export default class MailAddress extends Component {
     }
 
     _onPressContinueButton = () => {
-        data = {
+        let data = {
             "mail_address": this.state.address1,
             "mail_po": this.state.pobox,
             "mail_zip": this.state.zipCode,
@@ -45,7 +45,7 @@ export default class MailAddress extends Component {
                 />
                 <TextInput
                     onChangeText={(zipCode) => this.setState({zipCode})}
-                    value={this.state.zipCode} placeholder={'Zip Code'} maxLength={5}
+                    value={this.state.zipCode} placeholder={'Zip Code'} maxLength={5} keyboardType = {"number-pad"}
                 />
                 <Button
                     onPress={this._onPressContinueButton}

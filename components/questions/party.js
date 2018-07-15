@@ -11,6 +11,7 @@ export default class Party extends Component {
     //need other text input
 
     _onPressContinueButton = () => {
+        let data = {};
         switch(this.state.party) {
             case "democratic":
                 data = {

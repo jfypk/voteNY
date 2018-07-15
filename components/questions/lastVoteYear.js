@@ -9,7 +9,7 @@ export default class LastVoteYear extends Component {
     }
 
     _onPressContinueButton = () => {
-        data = { "vh_year": this.state.voteYear };
+        let data = { "vh_year": this.state.voteYear };
         postData(data, () => {
             console.log("LastVote Continue");
             this.props.navigation.navigate('VCName');
@@ -24,7 +24,7 @@ export default class LastVoteYear extends Component {
                 </Text>
                 <TextInput
                     onChangeText={(voteYear) => this.setState({voteYear})}
-                    value={this.state.voteYear} maxLength={4} placeholder={'e.g. 2014'}
+                    value={this.state.voteYear} maxLength={4} placeholder={'e.g. 2014'} keyboardType = {"number-pad"}
                 />
                 <Button
                     onPress={this._onPressContinueButton}

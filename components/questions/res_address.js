@@ -8,13 +8,14 @@ export default class ResiAddress extends Component {
         this.state = { address1: '',
                        apt: '',
                        city: '',
-                       county: '',
+                       county: 'New York City',
                        zipCode: ''
                      };
+        this.counties = ["New York City", "Albany", "Allegany", "Broome", "Cattaraugus", "Cayuga", "Chautauqua", "Chemung", "Chenango", "Clinton", "Columbia", "Cortland", "Delaware", "Dutchess", "Erie", "Essex", "Franklin", "Fulton", "Genesee", "Greene", "Hamilton", "Herkimer", "Jefferson", "Lewis", "Livingston", "Madison", "Monroe", "Montgomery", "Nassau", "Niagara", "Oneida", "Onondaga", "Ontario", "Orange", "Orleans", "Oswego", "Otsego", "Putnam", "Rensselaer", "Rockland", "St. Lawrence", "Saratoga", "Schenectady", "Schoharie", "Schuyler", "Seneca", "Setuben", "Suffolk", "Sullivan", "Tioga", "Tompkins", "Ulster", "Warren", "Washington", "Wayne", "Westchester", "Wyoming", "Yates"];
     }
 
     _onPressContinueButton = () => {
-        data = {
+        let data = {
             "resi_address" : this.state.address1,
             "resi_apt#": this.state.apt,
             "resi_city" : this.state.city,
@@ -47,14 +48,15 @@ export default class ResiAddress extends Component {
                 />
                 <TextInput
                     onChangeText={(zipCode) => this.setState({zipCode})}
-                    value={this.state.zipCode} placeholder={'Zip Code'} maxLength={5}
+                    value={this.state.zipCode} placeholder={'Zip Code'} maxLength={5} keyboardType = {"number-pad"}
                 />
                 <Picker
                     selectedValue={this.state.county}
                     style={{ height: 50, width: 100 }}
                     onValueChange={(itemValue, itemIndex) => this.setState({county: itemValue})}>
-                    <Picker.Item label="Java" value="java" />
-                    <Picker.Item label="JavaScript" value="js" />
+                    {this.counties.map((item, index) => {
+                        return (<Picker.Item label={item} value={index} key={index}/>) 
+                    })}
                 </Picker>
                 <Button
                     onPress={this._onPressContinueButton}

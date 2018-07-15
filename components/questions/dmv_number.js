@@ -5,7 +5,7 @@ import { postData } from '../postData';
 export default class DMV_Number extends Component {
     constructor(props) {
         super(props);
-        this.state = { dmvNumber: 'XXXXXXXXX' };
+        this.state = { dmvNumber: '' };
     }
 
     _onPressContinueButton = () => {
@@ -26,7 +26,7 @@ export default class DMV_Number extends Component {
                 </Text>
                 <TextInput
                     onChangeText={(dmvNumber) => this.setState({dmvNumber})}
-                    value={this.state.dmvNumber} maxLength={9} placeholder={'123456789'}
+                    value={this.state.dmvNumber} maxLength={9} placeholder={'123456789'} 
                 />
                 <Button
                     onPress={this._onPressContinueButton}

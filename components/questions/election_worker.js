@@ -14,7 +14,7 @@ export default class ElectionWorker extends Component {
     }
 
     _onPressNoButton = () => {
-        data = {
+        let data = {
                     "election_worker_check": ""
                 };
         postData(data, () => {

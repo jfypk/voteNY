@@ -5,7 +5,7 @@ import { postData } from '../postData';
 export default class Gender extends Component {
 
     _onPressMaleButton = () => {
-        data = {
+        let data = {
             "male": "X",
             "female": ""
         };
@@ -16,7 +16,7 @@ export default class Gender extends Component {
     }
 
     _onPressFemaleButton = () => {
-        data = {
+        let data = {
             "male": "",
             "female": "X"
         };
@@ -27,7 +27,7 @@ export default class Gender extends Component {
     }
 
     _onPressSkipButton = () => {
-        data = {
+        let data = {
             "male": "",
             "female": ""
         };

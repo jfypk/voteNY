@@ -43,7 +43,7 @@ export default class Name extends Component {
                 </Text>
                 <TextInput
                     onChangeText={(firstName) => this.setState({firstName})}
-                    value={this.state.firstName} placeholder={"First Name"}
+                    value={this.state.firstName} placeholder={"First Name"} 
                 />
                 <TextInput
                     onChangeText={(middleInitial) => this.setState({middleInitial})}
